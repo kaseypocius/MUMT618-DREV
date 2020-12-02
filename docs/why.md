@@ -19,8 +19,8 @@ The algortihms proposed are simple and effecient, and I had previous positive ex
 My personal experience of the following VSTs and hardware modules have heavily inspired the design here
 
 <h6>Software</h6>
-<a href="https://valleyaudio.github.io/rack/plateau/index.html"> Plateau </a>
-<a href="https://www.izotope.com/en/shop/exponential-audio-r4.html"> Exponential Audio R4, and their other reverbs </a> Software reverbs designed by another ex-lexicon employee (Michael Carnes), here with close to 20 years of expenations the algorithms, with additions such as multiband distortion, compression of the tail, bit crushing and more.  
+<a href="https://valleyaudio.github.io/rack/plateau/index.html"> Plateau </a> A VCV implementation and expantion on the Dattorro algorithm <br>
+<a href="https://www.izotope.com/en/shop/exponential-audio-r4.html"> Exponential Audio R4, and their other reverbs </a> Software reverbs designed by another ex-lexicon employee (Michael Carnes), here with close to 20 years of expenations the algorithms, with additions such as multiband distortion, compression of the tail, bit crushing and more. <br> 
 
 
 <h6>Hardware</h6>
