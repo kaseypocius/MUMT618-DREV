@@ -20,7 +20,7 @@ My personal experience of the following VSTs and hardware modules have heavily i
 
 <h6>Software</h6>
 <a href="https://valleyaudio.github.io/rack/plateau/index.html"> Plateau </a>
-
+<a href="https://www.izotope.com/en/shop/exponential-audio-r4.html"> Exponential Audio R4, and their other reverbs </a> Software reverbs designed by another ex-lexicon employee (Michael Carnes), here with close to 20 years of expenations the algorithms, with additions such as multiband distortion, compression of the tail, bit crushing and more.  
 
 
 <h6>Hardware</h6>

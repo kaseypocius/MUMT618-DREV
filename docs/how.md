@@ -338,9 +338,10 @@ int main( int argc, char *argv[] )
 Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
 
   <h2> Challenges </h2>
-The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to be the case.
+The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to be the case. This model is still quite susceptible to internal clipping at any of the filters within the tank, so care must be taken to avoid this, unless this effect is deemed desirable by the user.  
 
   <h2> For the Future</h2>
+  As mentioned above, additional LFOs could be added with a wider variety of modulation shapes. Further experimentation with other effects to add to the feedback loop could also be useful, such as chorus or flangeing for further tail complexity. Implementations such as Valley Audio's Plateau add a size variable, so the user can tune the filters as they see fit. I did not pursue this as I rarely used size settings that aren't the ones found in original paper, but this method would allow for some more novel use cases, allowing for this reverb to double as a pitched percussion instrument. 
 
 
   <a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>
