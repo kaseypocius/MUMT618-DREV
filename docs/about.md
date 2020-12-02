@@ -13,4 +13,3 @@ A plate reverberator "in the style of Griesinger" as proposed by Jon Dattorro in
 <a href="https://kaseypocius.github.io/MUMT618-DREV/how"> How?</a><br>
 <a href="https://kaseypocius.github.io/MUMT618-DREV/demos"> Demos</a><br>
 <a href="https://kaseypocius.github.io/MUMT618-DREV/thanks"> Thanks</a><br>
-<a href="https://kaseypocius.github.io/MUMT618-DREV/tutorial"> Tutorial on Setup</a>
