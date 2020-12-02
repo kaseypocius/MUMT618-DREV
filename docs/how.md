@@ -4,11 +4,11 @@ permalink: /how/--->
 
 <h2> How? </h2>
 
-A stereo audio input is summed down to a mono signal, which is then fed into the 4 all pass filters. These act to reproduce early reflections, which are then fed into the reverb tank. Within the tank the audio is fed into 4 more allpass filters, here with added delay lines and low pass filters placed in a feedback loop. The strength of the feedback and cutoff of the low pass filters will determine the length of the resulting tail. Some distortion may be added to the final feedback path, allowing for the decay to exeed 1 is desired without excessive clipping, and can help reproduce some of the charateristics found in early hardware digital reverbs, where the would be some signal saturation at the amplifier chips.
+A stereo audio input is summed down to a mono signal, which is then fed into the 4 all pass filters. These act to reproduce early reflections, which are then fed into the reverb tank. Within the tank the audio is fed into 4 more allpass filters, here with added delay lines and low pass filters placed in a feedback loop. The strength of the feedback and cutoff of the low pass filters will determine the length of the resulting tail. 2 of the 4 allpass filters are modulated by LFOs, to add some pitch variation and to avoid the build up of clear tones in the tank. Some distortion may be added to the final feedback path, allowing for the decay to exceed 1 is desired without excessive clipping, and can help reproduce some of the characteristics found in early hardware digital reverbs, where the would be some signal saturation at the amplifier chips.
 
 
 <h2> Why Use My Patches?</h2>
-The DRev algorithm is computationally effecient and easily controlled while still capable of a wide variety of sonic characterics. I can also be easily expanded and modified into a new reverberator if the user wishes to explore new models of reverberation, by expanding the size of the tank, adding a second tank or further output diffusion etc.
+The DRev algorithm is computationally efficient and easily controlled while still capable of a wide variety of sonic characteristics. I can also be easily expanded and modified into a new reverberator if the user wishes to explore new models of reverberation, by expanding the size of the tank, adding a second tank or further output diffusion etc. More LFOs could be added, with more variation in shape and frequency as desired.
 
 
 <h2> A closer look at the code </h2>
@@ -338,7 +338,7 @@ int main( int argc, char *argv[] )
 Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
 
   <h2> Challenges </h2>
-The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to tbe the case.
+The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to be the case.
 
   <h2> For the Future</h2>
 

@@ -6,6 +6,8 @@ permalink: /about/--->
 
 A plate reverberator "in the style of Griesinger" as proposed by Jon Dattorro in his paper, Effect Design Part 1, implemented using the STK library. Very close to the plate algorithms found on the original <a href= "https://www.vintagedigital.com.au/lexicon-224-digital-reverberator/">Lexicon 224. </a>
 
+<img src="screenshots/DRev-SignalPath.png" alt="DRev Signal Path"> <br>
+
 <h2> Read More About </h2>
 <a href="https://kaseypocius.github.io/MUMT618-DREV/why"> Why?</a><br>
 <a href="https://kaseypocius.github.io/MUMT618-DREV/how"> How?</a><br>
