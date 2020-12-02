@@ -18,19 +18,19 @@ Audio has been normalized to enhance detail, and expose self resonances. I've ke
 
 Passed through the reverbs with the following Settings: <br>
 ```
-StkFloat InputGain = 0.9;
+  InputGain = 0.9;
 
-StkFloat DistortionMix = 1;
-StkFloat VerbMix = 0.1;
+  DistortionMix = 1;
+  VerbMix = 0.1;
 
-StkFloat InputDiffusionConstant1 = 0.75;
-StkFloat InputDiffusionConstant2 = 0.625;
-StkFloat DecayDiffusionConstant1 = 0.7;
-StkFloat DecayDiffusionConstant2 = 0.5;
-StkFloat Decay = 1.1;
-StkFloat BandWidth = 1;
-StkFloat Damping = 0.005 ;
-StkFloat ExcursionMS = 0.5376163435;
+  InputDiffusionConstant1 = 0.75;
+  InputDiffusionConstant2 = 0.625;
+  DecayDiffusionConstant1 = 0.7;
+  DecayDiffusionConstant2 = 0.5;
+  Decay = 1.1;
+  BandWidth = 1;
+  Damping = 0.005 ;
+  ExcursionMS = 0.5376163435;
 ```
 <br>
 
@@ -45,19 +45,19 @@ StkFloat ExcursionMS = 0.5376163435;
 
 Passed through the reverbs with the following Settings:<br>
 ```
-StkFloat InputGain = 0.5;
+  InputGain = 0.5;
 
-StkFloat DistortionMix = 0.2;
-StkFloat VerbMix = 0.1;
+  DistortionMix = 0.2;
+  VerbMix = 0.1;
 
-StkFloat InputDiffusionConstant1 = 0.75;
-StkFloat InputDiffusionConstant2 = 0.625;
-StkFloat DecayDiffusionConstant1 = 0.7;
-StkFloat DecayDiffusionConstant2 = 0.5;
-StkFloat Decay = 0.9999;
-StkFloat BandWidth = 1;
-StkFloat Damping = 0.005 ;
-StkFloat ExcursionMS = 0.5376163435;
+  InputDiffusionConstant1 = 0.75;
+  InputDiffusionConstant2 = 0.625;
+  DecayDiffusionConstant1 = 0.7;
+  DecayDiffusionConstant2 = 0.5;
+  Decay = 0.9999;
+  BandWidth = 1;
+  Damping = 0.005 ;
+  ExcursionMS = 0.5376163435;
 ```
 <a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-2-1.wav?raw=true">Blip </a> <br>
 <img src="spectrograms/wet-1-setting-2.png" alt="Spectrogram"> <br>
@@ -70,19 +70,19 @@ StkFloat ExcursionMS = 0.5376163435;
 
 Passed through the reverbs with the following Settings: <br>
 ```
-StkFloat InputGain = 0.25;
+  InputGain = 0.25;
 
-StkFloat DistortionMix = 0.;
-StkFloat VerbMix = 0.1;
+  DistortionMix = 0.;
+  VerbMix = 0.1;
 
-StkFloat InputDiffusionConstant1 = 0.75;
-StkFloat InputDiffusionConstant2 = 0.625;
-StkFloat DecayDiffusionConstant1 = 0.7;
-StkFloat DecayDiffusionConstant2 = 0.5;
-StkFloat Decay = 0.49999;
-StkFloat BandWidth = 0.5;
-StkFloat Damping = 0.005 ;
-StkFloat ExcursionMS = 0.5376163435;
+  InputDiffusionConstant1 = 0.75;
+  InputDiffusionConstant2 = 0.625;
+  DecayDiffusionConstant1 = 0.7;
+  DecayDiffusionConstant2 = 0.5;
+  Decay = 0.49999;
+  BandWidth = 0.5;
+  Damping = 0.005 ;
+  ExcursionMS = 0.5376163435;
 ```
 <a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-3-1.wav?raw=true">Blip </a> <br>
 <img src="spectrograms/wet-1-setting-3.png" alt="Spectrogram"> <br>
@@ -95,19 +95,19 @@ StkFloat ExcursionMS = 0.5376163435;
 
 Passed through the reverbs with the following Settings:: <br>
 ```
-StkFloat InputGain = 0.25;
+  InputGain = 0.25;
 
-StkFloat DistortionMix = 0.;
-StkFloat VerbMix = 0.1;
+  DistortionMix = 0.;
+  VerbMix = 0.1;
 
-StkFloat InputDiffusionConstant1 = 0.75;
-StkFloat InputDiffusionConstant2 = 0.625;
-StkFloat DecayDiffusionConstant1 = 0.7;
-StkFloat DecayDiffusionConstant2 = 0.5;
-StkFloat Decay = 0.99999;
-StkFloat BandWidth = 0.95;
-StkFloat Damping = 0.9005 ;
-StkFloat ExcursionMS = 0.5376163435;
+  InputDiffusionConstant1 = 0.75;
+  InputDiffusionConstant2 = 0.625;
+  DecayDiffusionConstant1 = 0.7;
+  DecayDiffusionConstant2 = 0.5;
+  Decay = 0.99999;
+  BandWidth = 0.95;
+  Damping = 0.9005 ;
+  ExcursionMS = 0.5376163435;
 
 ```
 
@@ -123,19 +123,19 @@ StkFloat ExcursionMS = 0.5376163435;
 Passed through the reverbs with the following Settings:: <br>
 
 ```
-StkFloat InputGain = 0.25;
+  InputGain = 0.25;
 
-StkFloat DistortionMix = 0.9;
-StkFloat VerbMix = 0.1;
+  DistortionMix = 0.9;
+  VerbMix = 0.1;
 
-StkFloat InputDiffusionConstant1 = 0.75;
-StkFloat InputDiffusionConstant2 = 0.625;
-StkFloat DecayDiffusionConstant1 = 0.7;
-StkFloat DecayDiffusionConstant2 = 0.5;
-StkFloat Decay = 1;
-StkFloat BandWidth = 0.15;
-StkFloat Damping = 0.9005 ;
-StkFloat ExcursionMS = 0.5376163435;
+  InputDiffusionConstant1 = 0.75;
+  InputDiffusionConstant2 = 0.625;
+  DecayDiffusionConstant1 = 0.7;
+  DecayDiffusionConstant2 = 0.5;
+  Decay = 1;
+  BandWidth = 0.15;
+  Damping = 0.9005 ;
+  ExcursionMS = 0.5376163435;
 ```
 <a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-5-1.wav?raw=true">Blip </a> <br>
 <img src="spectrograms/wet-1-setting-5.png" alt="Spectrogram"> <br>
