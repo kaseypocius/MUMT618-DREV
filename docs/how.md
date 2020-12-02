@@ -93,7 +93,7 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
 
   <br>
 
-  ```
+```
   // Cast the buffers to the correct data type.
 
 
@@ -107,7 +107,7 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
 
   StkFloat Excursion = ExcursionMS * SampleRate/1000;
 
-  ```
+```
 
   <br>
 
@@ -115,56 +115,55 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
 
   <br>
 
-  ```
-  // We know we only have 1 sample per frame here.
-  for ( int i=0; i<nFrames; i++ ) {
+```
+// We know we only have 1 sample per frame here.
+for ( int i=0; i<nFrames; i++ ) {
 
-    LFO1->tick();
-    LFO2->tick();
+LFO1->tick();
+LFO2->tick();
 
-  ```
+```
     <br>
 
     Now we start the processing loop. We start by generating the samples for the LFOs.
 
     <br>
-  ```
+```
     InTempL = (*In++);
     InTempR = (*In++);
 
     InTemp =  InTempL + InTempR * InputGain ;
-
-  ```
+```
     <br>
 
     Here the basic input values are created and mixed.
 
     <br>
-  ```
+```
     DecayTemp_[0] = lengths[4] + (LFO1->lastOut() * Excursion);
 
     Decay_Diffusion1_[0].setDelay( DecayTemp_[0] );
 
     DecayTemp_[1] = lengths[6] + (LFO2->lastOut() * Excursion);
     Decay_Diffusion2_[0].setDelay( DecayTemp_[1] );
-  ```
+```
     <br>
 
     The new delay line lengths are then calculated, using the new LFO values.
 
     <br>
-  ```
+```
     PreDelay.tick(InTemp);
 
     Bandwidth.tick(PreDelay.lastOut());
 
-  ```
+```
     <br>
 
     An initial predelay is calculated here and the initial "BandWidth" filter, which can help emulate lower sample rates and vintage hardware while still calculating the rest of the reverb chain in a more modern sample rate to avoid artifacting
 
     <br>
-  ```
+```
     temp = Input_Diffusion1_[0].lastOut();
     temp0 = -(temp * InputDiffusionConstant1);
     temp0 += Bandwidth.lastOut();
@@ -189,13 +188,13 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
     Input_Diffusion2_[1].tick(temp3);
     temp3 = (InputDiffusionConstant2 * temp3) + temp;
 
-  ```
+```
     <br>
 
     Here we calculate the cascade of input all pass filters, resulting in the initial input diffusion.
 
     <br>
-  ```
+```
 
     temp = Decay_Diffusion1_[0].lastOut();
     temp4 = (temp * DecayDiffusionConstant1);
@@ -235,25 +234,25 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
 
 
 
-  ```
+```
     <br>
 
     Here the first pass through in the tank is calculated
 
     <br>
-  ```
+```
     FBTemp = TankDelay_[3].lastOut() * Decay;
 
     cubic.tick(FBTemp);
 
     FBTemp = (FBTemp * (1-DistortionMix)) + (cubic.lastOut() * DistortionMix);
 
-  ```
+```
     <br>
     Here the feedback value is calculated, and then fed into the distortion. The mix is then caclulated based on the user's specifications.
 
     <br>
-  ```
+```
     OutTempL =  0.6  * (Decay_Diffusion2_[0].tapOut(taps[0]) + Decay_Diffusion2_[0].tapOut(taps[1]) - Decay_Diffusion2_[1].tapOut(taps[2]) + Decay_Diffusion2_[1].tapOut(taps[3]) - Decay_Diffusion1_[0].tapOut(taps[4]) - Decay_Diffusion1_[1].tapOut(taps[5]) - TankDelay_[1].tapOut(taps[6]));
 
     OutTempR =  0.6  * (Decay_Diffusion1_[0].tapOut(taps[7]) + Decay_Diffusion1_[0].tapOut(taps[8]) - Decay_Diffusion1_[1].tapOut(taps[9]) + Decay_Diffusion1_[1].tapOut(taps[10]) - Decay_Diffusion2_[0].tapOut(taps[11]) - Decay_Diffusion2_[1].tapOut(taps[12]) - Decay_Diffusion2_[1].tapOut(taps[13]));
@@ -261,12 +260,12 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
     *Out++ = OutTempL;
     *Out++ = OutTempR;
 
-  ```
+```
     <br>
     The outputs are then calculated, using the various points from within the loop as specified in the paper to increase complexity in the reverb tail
 
     <br>
-  ```
+```
     int main( int argc, char *argv[] )
     {
       RtAudio adac;
@@ -331,8 +330,7 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
                 TankDelay_[i].setMaximumDelay( lengths[i+8] );
                 TankDelay_[i].setDelay( lengths[i+8] );
               }
-
-  ```
+```
               <br>
 
               Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
