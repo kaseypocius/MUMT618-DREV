@@ -97,15 +97,15 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
   // Cast the buffers to the correct data type.
 
 
-    register StkFloat *In = (StkFloat *) inputBuffer;
-    register StkFloat *Out = (StkFloat *) outputBuffer;
+  register StkFloat *In = (StkFloat *) inputBuffer;
+  register StkFloat *Out = (StkFloat *) outputBuffer;
 
-    SineWave *LFO1 = (SineWave *) dataPointer;
-    SineWave *LFO2 = (SineWave *) dataPointer;
+  SineWave *LFO1 = (SineWave *) dataPointer;
+  SineWave *LFO2 = (SineWave *) dataPointer;
 
 
 
-    StkFloat Excursion = ExcursionMS * SampleRate/1000;
+  StkFloat Excursion = ExcursionMS * SampleRate/1000;
 
   ```
 
@@ -117,231 +117,231 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
 
   ```
   // We know we only have 1 sample per frame here.
-    for ( int i=0; i<nFrames; i++ ) {
+  for ( int i=0; i<nFrames; i++ ) {
 
-        LFO1->tick();
-        LFO2->tick();
+    LFO1->tick();
+    LFO2->tick();
 
-  ```
-<br>
+    ```
+    <br>
 
-Now we start the processing loop. We start by generating the samples for the LFOs.
+    Now we start the processing loop. We start by generating the samples for the LFOs.
 
-<br>
-```
-InTempL = (*In++);
-        InTempR = (*In++);
+    <br>
+    ```
+    InTempL = (*In++);
+    InTempR = (*In++);
 
-        InTemp =  InTempL + InTempR * InputGain ;
+    InTemp =  InTempL + InTempR * InputGain ;
 
-```
-<br>
+    ```
+    <br>
 
-Here the basic input values are created and mixed.
+    Here the basic input values are created and mixed.
 
-<br>
-```
-DecayTemp_[0] = lengths[4] + (LFO1->lastOut() * Excursion);
+    <br>
+    ```
+    DecayTemp_[0] = lengths[4] + (LFO1->lastOut() * Excursion);
 
-       Decay_Diffusion1_[0].setDelay( DecayTemp_[0] );
+    Decay_Diffusion1_[0].setDelay( DecayTemp_[0] );
 
-       DecayTemp_[1] = lengths[6] + (LFO2->lastOut() * Excursion);
-       Decay_Diffusion2_[0].setDelay( DecayTemp_[1] );
-```
-<br>
+    DecayTemp_[1] = lengths[6] + (LFO2->lastOut() * Excursion);
+    Decay_Diffusion2_[0].setDelay( DecayTemp_[1] );
+    ```
+    <br>
 
-The new delay line lengths are then calculated, using the new LFO values.
+    The new delay line lengths are then calculated, using the new LFO values.
 
-<br>
-```
-PreDelay.tick(InTemp);
+    <br>
+    ```
+    PreDelay.tick(InTemp);
 
-        Bandwidth.tick(PreDelay.lastOut());
+    Bandwidth.tick(PreDelay.lastOut());
 
-```
-<br>
+    ```
+    <br>
 
-An initial predelay is calculated here and the initial "BandWidth" filter, which can help emulate lower sample rates and vintage hardware while still calculating the rest of the reverb chain in a more modern sample rate to avoid artifacting
+    An initial predelay is calculated here and the initial "BandWidth" filter, which can help emulate lower sample rates and vintage hardware while still calculating the rest of the reverb chain in a more modern sample rate to avoid artifacting
 
-<br>
-```
-temp = Input_Diffusion1_[0].lastOut();
-        temp0 = -(temp * InputDiffusionConstant1);
-        temp0 += Bandwidth.lastOut();
-        Input_Diffusion1_[0].tick(temp0);
-        temp0 = (InputDiffusionConstant1 * temp0) + temp;
+    <br>
+    ```
+    temp = Input_Diffusion1_[0].lastOut();
+    temp0 = -(temp * InputDiffusionConstant1);
+    temp0 += Bandwidth.lastOut();
+    Input_Diffusion1_[0].tick(temp0);
+    temp0 = (InputDiffusionConstant1 * temp0) + temp;
 
-        temp = Input_Diffusion1_[1].lastOut();
-        temp1 = -(temp * InputDiffusionConstant1);
-        temp1 += temp0;
-        Input_Diffusion1_[1].tick(temp1);
-        temp1 = (InputDiffusionConstant1 * temp1) + temp;
+    temp = Input_Diffusion1_[1].lastOut();
+    temp1 = -(temp * InputDiffusionConstant1);
+    temp1 += temp0;
+    Input_Diffusion1_[1].tick(temp1);
+    temp1 = (InputDiffusionConstant1 * temp1) + temp;
 
-        temp = Input_Diffusion2_[0].lastOut();
-        temp2 = -(temp * InputDiffusionConstant2);
-        temp2 += temp1;
-        Input_Diffusion2_[0].tick(temp2);
-        temp2 = (InputDiffusionConstant2 * temp2) + temp;
+    temp = Input_Diffusion2_[0].lastOut();
+    temp2 = -(temp * InputDiffusionConstant2);
+    temp2 += temp1;
+    Input_Diffusion2_[0].tick(temp2);
+    temp2 = (InputDiffusionConstant2 * temp2) + temp;
 
-        temp = Input_Diffusion2_[1].lastOut();
-        temp3 = -(temp * InputDiffusionConstant2);
-        temp3 += temp2;
-        Input_Diffusion2_[1].tick(temp3);
-        temp3 = (InputDiffusionConstant2 * temp3) + temp;
+    temp = Input_Diffusion2_[1].lastOut();
+    temp3 = -(temp * InputDiffusionConstant2);
+    temp3 += temp2;
+    Input_Diffusion2_[1].tick(temp3);
+    temp3 = (InputDiffusionConstant2 * temp3) + temp;
 
-```
-<br>
+    ```
+    <br>
 
-Here we calculate the cascade of input all pass filters, resulting in the initial input diffusion.
+    Here we calculate the cascade of input all pass filters, resulting in the initial input diffusion.
 
-<br>
-```
+    <br>
+    ```
 
-        temp = Decay_Diffusion1_[0].lastOut();
-        temp4 = (temp * DecayDiffusionConstant1);
-        temp4 += temp3 + FBTemp;
-        Decay_Diffusion1_[0].tick(temp4);
-        temp4 = -(DecayDiffusionConstant1 * temp4) + temp;
+    temp = Decay_Diffusion1_[0].lastOut();
+    temp4 = (temp * DecayDiffusionConstant1);
+    temp4 += temp3 + FBTemp;
+    Decay_Diffusion1_[0].tick(temp4);
+    temp4 = -(DecayDiffusionConstant1 * temp4) + temp;
 
-        TankDelay_[0].tick(temp4);
+    TankDelay_[0].tick(temp4);
 
-        Damping1.tick(TankDelay_[0].lastOut());
+    Damping1.tick(TankDelay_[0].lastOut());
 
-        temp = Decay_Diffusion1_[1].lastOut();
-        temp5 = -(temp * DecayDiffusionConstant2);
-        temp5 += Damping1.lastOut() * Decay;
-        Decay_Diffusion1_[1].tick(temp5);
-        temp5 = (DecayDiffusionConstant2 * temp5) + temp;
+    temp = Decay_Diffusion1_[1].lastOut();
+    temp5 = -(temp * DecayDiffusionConstant2);
+    temp5 += Damping1.lastOut() * Decay;
+    Decay_Diffusion1_[1].tick(temp5);
+    temp5 = (DecayDiffusionConstant2 * temp5) + temp;
 
-        TankDelay_[1].tick(temp5);
+    TankDelay_[1].tick(temp5);
 
-        temp = Decay_Diffusion2_[0].lastOut();
-        temp6 = (temp * DecayDiffusionConstant1);
-        temp6 += (TankDelay_[1].lastOut() * Decay) + temp3;
-        Decay_Diffusion2_[0].tick(temp4);
-        temp6 = -(DecayDiffusionConstant1 * temp6) + temp;
+    temp = Decay_Diffusion2_[0].lastOut();
+    temp6 = (temp * DecayDiffusionConstant1);
+    temp6 += (TankDelay_[1].lastOut() * Decay) + temp3;
+    Decay_Diffusion2_[0].tick(temp4);
+    temp6 = -(DecayDiffusionConstant1 * temp6) + temp;
 
-        TankDelay_[2].tick(temp6);
+    TankDelay_[2].tick(temp6);
 
-        Damping1.tick(TankDelay_[2].lastOut());
+    Damping1.tick(TankDelay_[2].lastOut());
 
-        temp = Decay_Diffusion2_[1].lastOut();
-        temp7 = -(temp * DecayDiffusionConstant2);
-        temp7 += Damping2.lastOut() * Decay;
-        Decay_Diffusion2_[1].tick(temp5);
-        temp7 = (DecayDiffusionConstant2 * temp7) + temp;
+    temp = Decay_Diffusion2_[1].lastOut();
+    temp7 = -(temp * DecayDiffusionConstant2);
+    temp7 += Damping2.lastOut() * Decay;
+    Decay_Diffusion2_[1].tick(temp5);
+    temp7 = (DecayDiffusionConstant2 * temp7) + temp;
 
-        TankDelay_[3].tick(temp7);
-
-
-
-```
-<br>
-
-Here the first pass through in the tank is calculated
-
-<br>
-```
-FBTemp = TankDelay_[3].lastOut() * Decay;
-
-        cubic.tick(FBTemp);
-
-        FBTemp = (FBTemp * (1-DistortionMix)) + (cubic.lastOut() * DistortionMix);
-
-```
-<br>
-Here the feedback value is calculated, and then fed into the distortion. The mix is then caclulated based on the user's specifications.
-
-<br>
-```
-OutTempL =  0.6  * (Decay_Diffusion2_[0].tapOut(taps[0]) + Decay_Diffusion2_[0].tapOut(taps[1]) - Decay_Diffusion2_[1].tapOut(taps[2]) + Decay_Diffusion2_[1].tapOut(taps[3]) - Decay_Diffusion1_[0].tapOut(taps[4]) - Decay_Diffusion1_[1].tapOut(taps[5]) - TankDelay_[1].tapOut(taps[6]));
-
-        OutTempR =  0.6  * (Decay_Diffusion1_[0].tapOut(taps[7]) + Decay_Diffusion1_[0].tapOut(taps[8]) - Decay_Diffusion1_[1].tapOut(taps[9]) + Decay_Diffusion1_[1].tapOut(taps[10]) - Decay_Diffusion2_[0].tapOut(taps[11]) - Decay_Diffusion2_[1].tapOut(taps[12]) - Decay_Diffusion2_[1].tapOut(taps[13]));
-
-        *Out++ = OutTempL;
-        *Out++ = OutTempR;
-
-```
-<br>
-The outputs are then calculated, using the various points from within the loop as specified in the paper to increase complexity in the reverb tail
-
-<br>
-```
-int main( int argc, char *argv[] )
-{
-    RtAudio adac;
-    SineWave LFO1;
-    SineWave LFO2;
-
-    unsigned int nFrames = 256;  // 256 sample frames
-    unsigned int SampleRate = 48000;
-    unsigned int nChannels = 2;
-
-    StkFloat scaler = SampleRate/29761;
+    TankDelay_[3].tick(temp7);
 
 
-    StkFloat Excursion = ExcursionMS * SampleRate/1000;
+
+    ```
+    <br>
+
+    Here the first pass through in the tank is calculated
+
+    <br>
+    ```
+    FBTemp = TankDelay_[3].lastOut() * Decay;
+
+    cubic.tick(FBTemp);
+
+    FBTemp = (FBTemp * (1-DistortionMix)) + (cubic.lastOut() * DistortionMix);
+
+    ```
+    <br>
+    Here the feedback value is calculated, and then fed into the distortion. The mix is then caclulated based on the user's specifications.
+
+    <br>
+    ```
+    OutTempL =  0.6  * (Decay_Diffusion2_[0].tapOut(taps[0]) + Decay_Diffusion2_[0].tapOut(taps[1]) - Decay_Diffusion2_[1].tapOut(taps[2]) + Decay_Diffusion2_[1].tapOut(taps[3]) - Decay_Diffusion1_[0].tapOut(taps[4]) - Decay_Diffusion1_[1].tapOut(taps[5]) - TankDelay_[1].tapOut(taps[6]));
+
+    OutTempR =  0.6  * (Decay_Diffusion1_[0].tapOut(taps[7]) + Decay_Diffusion1_[0].tapOut(taps[8]) - Decay_Diffusion1_[1].tapOut(taps[9]) + Decay_Diffusion1_[1].tapOut(taps[10]) - Decay_Diffusion2_[0].tapOut(taps[11]) - Decay_Diffusion2_[1].tapOut(taps[12]) - Decay_Diffusion2_[1].tapOut(taps[13]));
+
+    *Out++ = OutTempL;
+    *Out++ = OutTempR;
+
+    ```
+    <br>
+    The outputs are then calculated, using the various points from within the loop as specified in the paper to increase complexity in the reverb tail
+
+    <br>
+    ```
+    int main( int argc, char *argv[] )
+    {
+      RtAudio adac;
+      SineWave LFO1;
+      SineWave LFO2;
+
+      unsigned int nFrames = 256;  // 256 sample frames
+      unsigned int SampleRate = 48000;
+      unsigned int nChannels = 2;
+
+      StkFloat scaler = SampleRate/29761;
 
 
-     int delay, i;
-    if ( scaler != 1.0 ) {
-      for ( i=0; i<12; i++ ) {
-        delay =  scaler * lengths[i] ;
-        if ( (delay & 1) == 0) delay++;
-        lengths[i] = delay;
-      }}
+      StkFloat Excursion = ExcursionMS * SampleRate/1000;
 
-        if ( scaler != 1.0 ) {
-          for ( i=0; i<14; i++ ) {
-            delay = (int) floor( scaler * taps[i] );
-            if ( (delay & 1) == 0) delay++;
-            taps[i] = delay;
+
+      int delay, i;
+      if ( scaler != 1.0 ) {
+        for ( i=0; i<12; i++ ) {
+          delay =  scaler * lengths[i] ;
+          if ( (delay & 1) == 0) delay++;
+          lengths[i] = delay;
           }}
 
-        Bandwidth.setCoefficients(BandWidth, BandWidth_A1);
-        Damping1.setCoefficients(Damping_B0, Damping_A1);
-        Damping2.setCoefficients(Damping_B0, Damping_A1);
+          if ( scaler != 1.0 ) {
+            for ( i=0; i<14; i++ ) {
+              delay = (int) floor( scaler * taps[i] );
+              if ( (delay & 1) == 0) delay++;
+              taps[i] = delay;
+              }}
 
-        PreDelay.setMaximumDelay(SampleRate * 2);
-        PreDelay.setDelay(1);
+              Bandwidth.setCoefficients(BandWidth, BandWidth_A1);
+              Damping1.setCoefficients(Damping_B0, Damping_A1);
+              Damping2.setCoefficients(Damping_B0, Damping_A1);
 
-
-        for ( i=0; i<2; i++ ) {
-        Input_Diffusion1_[i].setMaximumDelay( lengths[i] );
-        Input_Diffusion1_[i].setDelay( lengths[i] );
-        }
-
-
-        for ( i=0; i<2; i++ ) {
-        Input_Diffusion2_[i].setMaximumDelay( lengths[i+2] );
-        Input_Diffusion2_[i].setDelay( lengths[i+2] );
-        }
+              PreDelay.setMaximumDelay(SampleRate * 2);
+              PreDelay.setDelay(1);
 
 
-        for ( i=0; i<2; i++ ) {
-        Decay_Diffusion1_[i].setMaximumDelay( lengths[i+4] + 100);
-        Decay_Diffusion1_[i].setDelay( lengths[i+4] );
-        }
-        for ( i=0; i<2; i++ ) {
-        Decay_Diffusion2_[i].setMaximumDelay( lengths[i+6] + 100);
-        Decay_Diffusion2_[i].setDelay( lengths[i+6] );
-        }
-
-        for ( i=0; i<4; i++ ) {
-        TankDelay_[i].setMaximumDelay( lengths[i+8] );
-        TankDelay_[i].setDelay( lengths[i+8] );
-        }
-
-```
-<br>
-
-Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
-
-  <h2> Challenges </h2>
-The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to be the case. This model is still quite susceptible to internal clipping at any of the filters within the tank, so care must be taken to avoid this, unless this effect is deemed desirable by the user.  
-
-  <h2> For the Future</h2>
-  As mentioned above, additional LFOs could be added with a wider variety of modulation shapes. Further experimentation with other effects to add to the feedback loop could also be useful, such as chorus or flangeing for further tail complexity. Implementations such as Valley Audio's Plateau add a size variable, so the user can tune the filters as they see fit. I did not pursue this as I rarely used size settings that aren't the ones found in original paper, but this method would allow for some more novel use cases, allowing for this reverb to double as a pitched percussion instrument. 
+              for ( i=0; i<2; i++ ) {
+                Input_Diffusion1_[i].setMaximumDelay( lengths[i] );
+                Input_Diffusion1_[i].setDelay( lengths[i] );
+              }
 
 
-  <a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>
+              for ( i=0; i<2; i++ ) {
+                Input_Diffusion2_[i].setMaximumDelay( lengths[i+2] );
+                Input_Diffusion2_[i].setDelay( lengths[i+2] );
+              }
+
+
+              for ( i=0; i<2; i++ ) {
+                Decay_Diffusion1_[i].setMaximumDelay( lengths[i+4] + 100);
+                Decay_Diffusion1_[i].setDelay( lengths[i+4] );
+              }
+              for ( i=0; i<2; i++ ) {
+                Decay_Diffusion2_[i].setMaximumDelay( lengths[i+6] + 100);
+                Decay_Diffusion2_[i].setDelay( lengths[i+6] );
+              }
+
+              for ( i=0; i<4; i++ ) {
+                TankDelay_[i].setMaximumDelay( lengths[i+8] );
+                TankDelay_[i].setDelay( lengths[i+8] );
+              }
+
+              ```
+              <br>
+
+              Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
+
+              <h2> Challenges </h2>
+              The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to be the case. This model is still quite susceptible to internal clipping at any of the filters within the tank, so care must be taken to avoid this, unless this effect is deemed desirable by the user.  
+
+              <h2> For the Future</h2>
+              As mentioned above, additional LFOs could be added with a wider variety of modulation shapes. Further experimentation with other effects to add to the feedback loop could also be useful, such as chorus or flangeing for further tail complexity. Implementations such as Valley Audio's Plateau add a size variable, so the user can tune the filters as they see fit. I did not pursue this as I rarely used size settings that aren't the ones found in original paper, but this method would allow for some more novel use cases, allowing for this reverb to double as a pitched percussion instrument.
+
+
+              <a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>
