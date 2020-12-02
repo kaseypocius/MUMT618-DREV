@@ -338,9 +338,9 @@ int main( int argc, char *argv[] )
 Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
 
   <h2> Challenges </h2>
-The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to tbe the case. 
+The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to tbe the case.
 
   <h2> For the Future</h2>
 
 
-  <a href="https://kaseypocius.github.io/MUMT-307-ShimmeringPeaks/about"> Back to the About</a>
+  <a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>

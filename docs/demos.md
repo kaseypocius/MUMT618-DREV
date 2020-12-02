@@ -144,4 +144,4 @@ StkFloat ExcursionMS = 0.5376163435;
 <a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-5-3.wav?raw=true">Drone </a> <br>
 <img src="spectrograms/wet-3-setting-5.png" alt="Spectrogram"> <br>
 
-<a href="https://kaseypocius.github.io/MUMT-307-ShimmeringPeaks/about"> Back to the About</a>
+<a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>
