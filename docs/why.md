@@ -20,11 +20,13 @@ My personal experience of the following VSTs and hardware modules have heavily i
 
 <h6>Software</h6>
 <a href="https://valleyaudio.github.io/rack/plateau/index.html"> Plateau </a> A VCV implementation and expantion on the Dattorro algorithm <br>
-<a href="https://www.izotope.com/en/shop/exponential-audio-r4.html"> Exponential Audio R4, and their other reverbs </a> Software reverbs designed by another ex-lexicon employee (Michael Carnes), here with close to 20 years of expenations the algorithms, with additions such as multiband distortion, compression of the tail, bit crushing and more. <br> 
+<a href="https://www.izotope.com/en/shop/exponential-audio-r4.html"> Exponential Audio R4, and their other reverbs </a> Software reverbs designed by another ex-lexicon employee (Michael Carnes), here with close to 20 years of expenations the algorithms, with additions such as multiband distortion, compression of the tail, bit crushing and more. <br>
 
 
 <h6>Hardware</h6>
-<a href="http://www.makenoisemusic.com/modules/erbe-verb">Make Noise Erbe Verbe </a> Tom Erbe's DSP Reverb for Make Noise, which implements saturation in a matrix style reverb to allow for feedback above 1, which is where I took the idea to implement saturation in the reverb loop.
+<a href="http://www.makenoisemusic.com/modules/erbe-verb">Make Noise Erbe Verbe </a> Tom Erbe's DSP Reverb for Make Noise, which implements saturation in a matrix style reverb to allow for feedback above 1, which is where I took the idea to implement saturation in the reverb loop.<br>
+<a href="https://www.soundonsound.com/reviews/ursa-major-space-station"> Ursa Major Space Station </a> Another vintage digital reverb, with saturation on it's feedback path.<br>
+<a href="https://www.sweetwater.com/insync/emt-140/">EMT-140</a> The Original gold plate reverb <br>
 
 
  <a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>
