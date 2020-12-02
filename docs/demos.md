@@ -34,13 +34,14 @@ StkFloat ExcursionMS = 0.5376163435;
 ```
 <br>
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo1-Mother32Pings_JCREV.wav?raw=true">JCRev </a> <br>
-<img src="spectrograms/Demo1-Mother32Pings_JCREV.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-1-1.wav?raw=true">Blip </a> <br>
+<img src="spectrograms/wet-1-setting-1.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-1-2.wav?raw=true">Sequence </a> <br>
+<img src="spectrograms/wet-2-setting-1.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-1-3.wav?raw=true">Drone</a> <br>
+<img src="spectrograms/wet-3-setting-1.png" alt="Spectrogram"> <br>
 
-<h2> Liam Driscoll On The Guitar </h2>
-
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo2-GuitDI_Dry.wav?raw=true"> Dry signal from DI</a><br>
-<img src="spectrograms/Demo2-GuitDI_Dry.png" alt="Spectrogram"><br>
+<h2> Setting 2 </h2>
 
 Passed through the reverbs with the following Settings:<br>
 ```
@@ -58,12 +59,16 @@ StkFloat BandWidth = 1;
 StkFloat Damping = 0.005 ;
 StkFloat ExcursionMS = 0.5376163435;
 ```
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-2-1.wav?raw=true">Blip </a> <br>
+<img src="spectrograms/wet-1-setting-2.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-2-2.wav?raw=true">Sequence </a> <br>
+<img src="spectrograms/wet-2-setting-2.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-2-3.wav?raw=true">Drone </a> <br>
+<img src="spectrograms/wet-3-setting-2.png" alt="Spectrogram"> <br>
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo2-GuitDI_JCREV.wav?raw=true">JCRev </a> <br>
-<img src="spectrograms/Demo2-GuitDI_JCREV.png" alt="Spectrogram"> <br>
+<h2> Setting 3 </h2>
 
-
-Guit passed through the quad reverbs with the following Settings: <br>
+Passed through the reverbs with the following Settings: <br>
 ```
 StkFloat InputGain = 0.25;
 
@@ -79,21 +84,16 @@ StkFloat BandWidth = 0.5;
 StkFloat Damping = 0.005 ;
 StkFloat ExcursionMS = 0.5376163435;
 ```
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo2-GuitDI_JCREV-QUAD.wav?raw=true">JCRev-Quad </a> <br>
-<img src="spectrograms/Demo2-GuitDI_JCREV.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-3-1.wav?raw=true">Blip </a> <br>
+<img src="spectrograms/wet-1-setting-3.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-3-2.wav?raw=true">Sequence </a> <br>
+<img src="spectrograms/wet-2-setting-3.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-3-3.wav?raw=true">Drone </a> <br>
+<img src="spectrograms/wet-3-setting-3.png" alt="Spectrogram"> <br>
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo2-GuitDI_NREV-QUAD.wav?raw=true">NRev-Quad </a> <br>
-<img src="spectrograms/Demo2-GuitDI_NREV.png" alt="Spectrogram"> <br>
+<h2> Setting 4 </h2>
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo2-GuitDI_PRCREV-QUAD.wav?raw=true">PRCRev-Quad </a> <br>
-<img src="spectrograms/Demo2-GuitDI_PRCREV.png" alt="Spectrogram"> <br>
-
-<h2> Mother 32 Short Sequence </h2>
-
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo3-Mother32Seq_Dry.wav?raw=true"> Dry Mother32 Sequence</a><br>
-<img src="spectrograms/Demo3-Mother32Seq_Dry.png" alt="Spectrogram"><br>
-
-Mother32 sequenced passed through the quad reverbs with the following Settings: <br>
+Passed through the reverbs with the following Settings:: <br>
 ```
 StkFloat InputGain = 0.25;
 
@@ -111,14 +111,16 @@ StkFloat ExcursionMS = 0.5376163435;
 
 ```
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo3-Mother32Seq_JCREV-QUAD.wav?raw=true">JCRev-Quad </a> <br>
-<img src="spectrograms/Demo3-Mother32Seq_JCREV-QUAD.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-4-1.wav?raw=true">Blip </a> <br>
+<img src="spectrograms/wet-1-setting-4.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-4-2.wav?raw=true">Sequence </a> <br>
+<img src="spectrograms/wet-2-setting-4.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-4-3.wav?raw=true">Drone </a> <br>
+<img src="spectrograms/wet-3-setting-4.png" alt="Spectrogram"> <br>
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo3-Mother32Seq_NREV-QUAD.wav?raw=true">NRev-Quad </a> <br>
-<img src="spectrograms/Demo3-Mother32Seq_NREV-QUAD.png" alt="Spectrogram"> <br>
+<h2> Setting 5 </h2>
 
-<a href="https://github.com/kaseypocius/MUMT-307-ShimmeringPeaks/blob/master/docs/audio/Demo3-Mother32Seq_PRCREVQUAD.wav?raw=true">PRCRev-Quad </a> <br>
-<img src="spectrograms/Demo3-Mother32Seq_PRCREVQUAD.png" alt="Spectrogram"> <br>
+Passed through the reverbs with the following Settings:: <br>
 
 ```
 StkFloat InputGain = 0.25;
@@ -135,5 +137,11 @@ StkFloat BandWidth = 0.15;
 StkFloat Damping = 0.9005 ;
 StkFloat ExcursionMS = 0.5376163435;
 ```
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-5-1.wav?raw=true">Blip </a> <br>
+<img src="spectrograms/wet-1-setting-5.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-5-2.wav?raw=true">Sequence </a> <br>
+<img src="spectrograms/wet-2-setting-5.png" alt="Spectrogram"> <br>
+<a href="https://github.com/kaseypocius/MUMT618-DREV/blob/master/docs/audio/verb-5-3.wav?raw=true">Drone </a> <br>
+<img src="spectrograms/wet-3-setting-5.png" alt="Spectrogram"> <br>
 
 <a href="https://kaseypocius.github.io/MUMT-307-ShimmeringPeaks/about"> Back to the About</a>
