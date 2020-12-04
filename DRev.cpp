@@ -218,7 +218,7 @@ int main( int argc, char *argv[] )
     std::cout << std::endl;
     std::cout << "Settings Dump" << std::endl;
     std::cout << std::endl;
-    std::cout << argv[0] << std::endl;
+    std::cout << "I Live here:" << argv[0] << std::endl;
     std::cout << argv[1] << ": Input Gain" << std::endl;
     std::cout << argv[2] << ": Distortion Mix" << std::endl;
     std::cout << argv[3] << ": InputDiffusionConstant1" << std::endl;

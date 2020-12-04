@@ -9,13 +9,19 @@ A tutorial on how to use my adaptation of the Dattorro Reverberator, with your d
 
 2. Compile each program, either through included compile statements (<i>which assumes that the STK is located on your desktop</i>)
 
-3. Run them from the command line with 12 arguments, or 14 if using the quad version. If operated incorrectly a usage statement will implement a default value instead. They are input as follows
+3. Run them from the command line with 10 arguments. They are input as follows
 
 ```
-t60
-Base Peak Frequency
-Peaks Spacing Constant
- 
+Input Gain
+Distortion Mix
+InputDiffusionConstant1
+InputDiffusionConstant2
+DecayDiffusionConstant1
+DecayDiffusionConstant2
+Decay
+BandWidth
+Damping
+ExcursionMS
 ```
 
 4. Press Enter when you're done. The software will cleanup and shutdown.
