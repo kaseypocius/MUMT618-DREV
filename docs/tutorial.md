@@ -3,7 +3,7 @@ title: "Tutorial"
 permalink: /tutorial/--->
 
 <h1> Tutorial </h1>
-A tutorial on how to use the Shimmering Peaks Reverbs, with your defaul audio device.
+A tutorial on how to use my adaptation of the Dattorro Reverberator, with your defaul audio device.
 
 1. Make sure you have the STK compiled for your machine, and that you know where the files are. For more help on that see <a href="https://ccrma.stanford.edu/software/stk/index.html"> the STK documentation </a>
 
@@ -15,19 +15,9 @@ A tutorial on how to use the Shimmering Peaks Reverbs, with your defaul audio de
 t60
 Base Peak Frequency
 Peaks Spacing Constant
-Mod Frequency
-Left Shift Factor
-Right Shift Factor
-Input Gain
-Output Gain
-Feedback
-Pitch Shift Mix
-Verb Mix
-Peak Mix
-Left Shift Factor 2
-Right Shift Factor 2
+ 
 ```
 
 4. Press Enter when you're done. The software will cleanup and shutdown.
 
-<a href="https://kaseypocius.github.io/MUMT-307-ShimmeringPeaks/about"> Back to the About</a>
+<a href="https://kaseypocius.github.io/MUMT618-DREV/about"> Back to the About</a>
