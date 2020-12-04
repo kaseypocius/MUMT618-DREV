@@ -104,10 +104,6 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
   SineWave *LFO1 = (SineWave *) dataPointer;
   SineWave *LFO2 = (SineWave *) dataPointer;
 
-
-
-  StkFloat Excursion = ExcursionMS * SampleRate/1000;
-
   ```
 
   <br>
@@ -283,6 +279,168 @@ int main( int argc, char *argv[] )
   unsigned int nFrames = 256;  // 256 sample frames
   unsigned int SampleRate = 48000;
   unsigned int nChannels = 2;
+  
+  ```
+  <br> 
+  Sets the sample rate
+  <br>
+  
+  ```
+  //user input vars, followed by error checking
+  if ( argc != 11 ) {
+      std::cout << "usage: " << argv[0] << " filepath" << std::endl;
+      std::cout << "    dump var for filepath" << std::endl;
+      std::cout << "usage: " << argv[1] << ": Input Gain" << std::endl;
+      std::cout << "   A float point scaler to control input gain" << std::endl;
+      std::cout << "usage: " << argv[2] << ": Distortion Mix" << std::endl;
+      std::cout << "   A float point scaler to control the mix of distortion on the tank feedback path" << std::endl;
+      std::cout << "usage: " << argv[3] << ": InputDiffusionConstant1" << std::endl;
+      std::cout << "   A float point between 0 & 1 to control the first set of allpass filters" << std::endl;
+      std::cout << "usage: " << argv[4] << ": InputDiffusionConstant2" << std::endl;
+      std::cout << "   A float point between 0 & 1 to control the second set of allpass filters" << std::endl;
+      std::cout << "usage: " << argv[5] << ": DecayDiffusionConstant1" << std::endl;
+      std::cout << "   The first of two float points between 0 & 1 used to control the tank filters " << std::endl;
+      std::cout << "usage: " << argv[6] << ": DecayDiffusionConstant2" << std::endl;
+      std::cout << "   The second of two float points between 0 & 1 used to control the tank filters " << std::endl;
+      std::cout << "usage: " << argv[7] << ": Decay" << std::endl;
+      std::cout << "   A float point used to control the tail length of the sound " << std::endl;
+      std::cout << "usage: " << argv[8] << ": BandWidth" << std::endl;
+      std::cout << "   A float point between 0 & 1 used to control the lowpass filtering at the input" << std::endl;
+      std::cout << "usage: " << argv[9] << ": Damping" << std::endl;
+      std::cout << "   A float point between 0 & 1 used to control the lowpass filtering within the tank" << std::endl;
+      std::cout << "usage: " << argv[10] << "ms : ExcursionMS" << std::endl;
+      std::cout << "  The modulation depth of the varrying allpass filters in the tank, measured in milliseconds" << std::endl;
+      return(0);
+  }
+  
+  std::cout << std::endl;
+  std::cout << "Settings Dump" << std::endl;
+  std::cout << std::endl;
+  std::cout << "I Live here:" << argv[0] << std::endl;
+  std::cout << argv[1] << ": Input Gain" << std::endl;
+  std::cout << argv[2] << ": Distortion Mix" << std::endl;
+  std::cout << argv[3] << ": InputDiffusionConstant1" << std::endl;
+  std::cout << argv[4] << ": InputDiffusionConstant2" << std::endl;
+  std::cout << argv[5] << ": DecayDiffusionConstant1" << std::endl;
+  std::cout << argv[6] << ": DecayDiffusionConstant2" << std::endl;
+  std::cout << argv[7] << ": Decay" << std::endl;
+  std::cout << argv[8] << ": BandWidth" << std::endl;
+  std::cout << argv[9] << ": Damping" << std::endl;
+  std::cout << argv[10] << "ms : ExcursionMS" << std::endl;
+  
+ InputGain= atof(argv[1]);
+  
+  if (InputGain <= 0){
+    std::cout << " Input Gain should be more than zero.... setting to 0.5" << std::endl;
+    InputGain = 0.5;
+  }
+
+ DistortionMix= atof(argv[2]);
+  
+  if (DistortionMix < 0){
+    std::cout << " Distoriotn Mix should be at least zero.... setting to 0" << std::endl;
+    DistortionMix = 0;
+  }
+  
+  if (DistortionMix > 1){
+    std::cout << " Distoriotn Mix should be less than one.... setting to 1" << std::endl;
+    DistortionMix = 0;
+  }
+
+  InputDiffusionConstant1 = atof(argv[3]);
+  
+  if (InputDiffusionConstant1 <= 0){
+    std::cout << " InputDiffusionContants should be more than zero.... setting to 0.75" << std::endl;
+    InputDiffusionConstant1 = 0.75;
+  }
+  
+  if (InputDiffusionConstant1 > 1){
+    std::cout << " InputDiffusionContants should be less than one.... setting to 0.75" << std::endl;
+    InputDiffusionConstant1 = 0.75;
+  }
+  
+  InputDiffusionConstant2 = atof(argv[4]);
+  
+  if (InputDiffusionConstant2 <= 0){
+    std::cout << " InputDiffusionContants should be more than zero.... setting to 0.65" << std::endl;
+    InputDiffusionConstant2 = 0.65;
+  }
+  
+  if (InputDiffusionConstant2 > 1){
+    std::cout << " InputDiffusionContants should be less than one.... setting to 0.65" << std::endl;
+    InputDiffusionConstant2 = 0.65;
+  }
+  
+   DecayDiffusionConstant1 = atof(argv[5]);
+  
+  if (DecayDiffusionConstant1 <= 0){
+    std::cout << " DecayDiffusionContants should be more than zero.... setting to 0.7" << std::endl;
+    DecayDiffusionConstant1 = 0.7;
+  }
+  
+  if (DecayDiffusionConstant1 > 1){
+    std::cout << " DecayDiffusionContants should be less than one.... setting to 0.7" << std::endl;
+    DecayDiffusionConstant1 = 0.7;
+  }
+  
+  DecayDiffusionConstant2 = atof(argv[6]);
+  
+  if (DecayDiffusionConstant2 <= 0){
+    std::cout << " DecayDiffusionContants should be more than zero.... setting to 0.5" << std::endl;
+    DecayDiffusionConstant2 = 0.5;
+  }
+  
+  if (DecayDiffusionConstant2 > 1){
+    std::cout << " DecayDiffusionContants should be less than one.... setting to 0.5" << std::endl;
+    DecayDiffusionConstant2 = 0.5;
+  }
+  
+  Decay = atof(argv[7]);
+  
+  if (Decay < 0){
+    std::cout << " Decay should be not be negative.... setting to 0" << std::endl;
+    Decay = 0;
+  }
+  
+  BandWidth = atof(argv[8]);
+  
+  if (BandWidth <= 0){
+    std::cout << " BandWidth should be more than zero.... setting to 0.001" << std::endl;
+    BandWidth = 0.001;
+  }
+  
+  if (BandWidth > 1){
+    std::cout << " BandWidth should be less than one.... setting to 0.9995" << std::endl;
+    BandWidth = 0.9995;
+  }
+  
+  Damping  = atof(argv[9]);
+  
+  if (Damping < 0){
+    std::cout << " Damping shouldn't be negative.... setting to 0.005" << std::endl;
+    Damping = 0.005;
+  }
+  
+  if (Damping > 1){
+    std::cout << " Damping should be less than one.... setting to 0.9995" << std::endl;
+    Damping = 0.9995;
+  }
+  
+   ExcursionMS = atof(argv[10]);
+  
+  if (ExcursionMS > 1000){
+    std::cout << " Excusion can't be more than a second.... setting to 1 second" << std::endl;
+    ExcursionMS = 1000;
+  }
+  
+  static StkFloat BandWidth_A1 = -(1.0 - BandWidth);
+  static StkFloat Damping_B0 = 1.0 -Damping;
+  static StkFloat Damping_A1 = -Damping
+
+```
+user vars are set up
+
+```
 
   StkFloat scaler = SampleRate/29761;
 
@@ -342,7 +500,7 @@ int main( int argc, char *argv[] )
           ```
 <br>
 
-Here the sample rate is specified by the user, which we then use to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
+Once the sample rate is specified by the user, we use  it to create a scalar value used to rescale the original values from the paper to those appropriate for the new sampling rate.
 
   <h2> Challenges </h2>
 The initial challenge for me was structuring the allpass filters, which I did not initially do correctly. From there, this algorithm should self sustain almost infinetly at a Decay setting of 1, but this still does not seem to be the case. This model is still quite susceptible to internal clipping at any of the filters within the tank, so care must be taken to avoid this, unless this effect is deemed desirable by the user.  
