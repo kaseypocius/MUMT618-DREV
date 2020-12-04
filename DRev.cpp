@@ -86,11 +86,19 @@ int DRev( void *outputBuffer, void *inputBuffer, unsigned int nFrames,
         
         InTemp =  InTempL + InTempR * InputGain ;
         
-        DecayTemp_[0] = lengths[4] + (LFO1->lastOut() * Excursion);
+        DecayTemp_[0] = abs(lengths[4] + (LFO1->lastOut() * Excursion));
+        
+        if (DecayTemp_[0] < 0.5) {
+            DecayTemp_[0] = 0.5;
+        }
         
         Decay_Diffusion1_[0].setDelay( DecayTemp_[0] );
         
-        DecayTemp_[1] = lengths[6] + (LFO2->lastOut() * Excursion);
+        DecayTemp_[1] = abs(lengths[6] + (LFO2->lastOut() * Excursion));
+        if (DecayTemp_[1] < 0.5) {
+            DecayTemp_[1] = 0.5;
+        }
+        
         Decay_Diffusion2_[0].setDelay( DecayTemp_[1] );
         
         PreDelay.tick(InTemp);
@@ -188,7 +196,7 @@ int main( int argc, char *argv[] )
     unsigned int nFrames = 256;  // 256 sample frames
     unsigned int SampleRate = 48000;
     unsigned int nChannels = 2;
-    
+    //user input vars, followed by error checking
     if ( argc != 11 ) {
         std::cout << "usage: " << argv[0] << " filepath" << std::endl;
         std::cout << "    dump var for filepath" << std::endl;
@@ -330,6 +338,11 @@ int main( int argc, char *argv[] )
     
      ExcursionMS = atof(argv[10]);
     
+    if (ExcursionMS > 1000){
+      std::cout << " Excusion can't be more than a second.... setting to 1 second" << std::endl;
+      ExcursionMS = 1000;
+    }
+    
     static StkFloat BandWidth_A1 = -(1.0 - BandWidth);
     static StkFloat Damping_B0 = 1.0 -Damping;
     static StkFloat Damping_A1 = -Damping;
@@ -376,11 +389,11 @@ int main( int argc, char *argv[] )
     
         
         for ( i=0; i<2; i++ ) {
-        Decay_Diffusion1_[i].setMaximumDelay( lengths[i+4] + 100);
+        Decay_Diffusion1_[i].setMaximumDelay( lengths[i+4] + SampleRate);
         Decay_Diffusion1_[i].setDelay( lengths[i+4] );
         }
         for ( i=0; i<2; i++ ) {
-        Decay_Diffusion2_[i].setMaximumDelay( lengths[i+6] + 100);
+        Decay_Diffusion2_[i].setMaximumDelay( lengths[i+6] + SampleRate);
         Decay_Diffusion2_[i].setDelay( lengths[i+6] );
         }
     

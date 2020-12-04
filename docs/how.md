@@ -55,23 +55,24 @@ static StkFloat temp, temp0, temp1, temp2, temp3, temp4, temp5, temp6, temp7;
 StkFloat lengths[12] = {142, 107, 379, 277, 672, 1800, 908, 2656, 4453, 3720, 4217, 3163};
 int taps[14] = {266, 2974, 1913, 1996, 1990, 187, 1066, 353, 3627, 1228, 2673, 2111, 335, 121};
 
-StkFloat InputGain = 0.9;
+static StkFloat InputGain;
 
-StkFloat DistortionMix = 1;
-StkFloat VerbMix = 0.1;
+static StkFloat DistortionMix;
 
-StkFloat InputDiffusionConstant1 = 0.75;
-StkFloat InputDiffusionConstant2 = 0.625;
-StkFloat DecayDiffusionConstant1 = 0.7;
-StkFloat DecayDiffusionConstant2 = 0.5;
-StkFloat Decay = 1.1;
-StkFloat BandWidth = 1;
-StkFloat Damping = 0.005 ;
-StkFloat ExcursionMS = 0.5376163435;
+static StkFloat InputDiffusionConstant1 ;
+static StkFloat InputDiffusionConstant2 ;
+static StkFloat DecayDiffusionConstant1 ;
+static StkFloat DecayDiffusionConstant2 ;
+static StkFloat Decay;
+static StkFloat BandWidth;
+static StkFloat Damping;
+StkFloat ExcursionMS;
+StkFloat Excursion;
 
-StkFloat BandWidth_A1 = -(1.0 - BandWidth);
-StkFloat Damping_B0 = 1.0 -Damping;
-StkFloat Damping_A1 = -Damping;
+static StkFloat BandWidth_A1;
+static StkFloat Damping_B0;
+static StkFloat Damping_A1;
+
 ```
 
 <br>
@@ -141,16 +142,22 @@ Here the basic input values are created and mixed.
 
 <br>
 ```
-DecayTemp_[0] = lengths[4] + (LFO1->lastOut() * Excursion);
+DecayTemp_[0] = abs(lengths[4] + (LFO1->lastOut() * Excursion));
+
+if (DecayTemp_[0] < 0.5) {
+    DecayTemp_[0] = 0.5;
+}
 
 Decay_Diffusion1_[0].setDelay( DecayTemp_[0] );
 
-DecayTemp_[1] = lengths[6] + (LFO2->lastOut() * Excursion);
-Decay_Diffusion2_[0].setDelay( DecayTemp_[1] );
+DecayTemp_[1] = abs(lengths[6] + (LFO2->lastOut() * Excursion));
+if (DecayTemp_[1] < 0.5) {
+    DecayTemp_[1] = 0.5;
+}
 ```
 <br>
 
-The new delay line lengths are then calculated, using the new LFO values.
+The new delay line lengths are then calculated, using the new LFO values. Some error checking is included, for proper interpolation and to avoid segment faults.
 
 <br>
 ```
@@ -319,11 +326,11 @@ int main( int argc, char *argv[] )
 
 
           for ( i=0; i<2; i++ ) {
-            Decay_Diffusion1_[i].setMaximumDelay( lengths[i+4] + 100);
+            Decay_Diffusion1_[i].setMaximumDelay( lengths[i+4] + SampleRate);
             Decay_Diffusion1_[i].setDelay( lengths[i+4] );
           }
           for ( i=0; i<2; i++ ) {
-            Decay_Diffusion2_[i].setMaximumDelay( lengths[i+6] + 100);
+            Decay_Diffusion2_[i].setMaximumDelay( lengths[i+6] + SampleRate);
             Decay_Diffusion2_[i].setDelay( lengths[i+6] );
           }
 
