@@ -7,7 +7,7 @@ A plate reverb is the simulation of reverberation through the use of a physical 
 In digital algorithms, plate-style reverberation will often refer to any algorithm where there are little to no early reflections and the late reflections occur almost immediately.
 
 <h2> Why the Dattorro Algortihms? </h2>
-The algortihms proposed are simple and effecient, and I had previous positive experience with other reverbs based upon modifications to these algorithms. As a result I believed this algorithm to be a good fit to try and implement in STK, and could prove to be useful in the future should I seek to experiment more with expanding it. It also shares similarities in topology to more room focused reverbs such as John Chowning's JCRev and other Schroeder style reverberators already implemented in STK, while the plate style still being distinct enough that I felt it was worth pursuing.
+The algortihms proposed are simple and effecient, and I had previous positive experience with other reverbs based upon modifications to these algorithms. As a result I believed this algorithm to be a good fit to try and implement in STK, and could prove to be useful in the future should I seek to experiment more with expanding it. It also shares similarities in topology to more room focused reverbs such as John Chowning's JCRev and other Schroeder style reverberators already implemented in STK, while the plate style still being distinct enough that I felt it was worth pursuing. I've also worked to extend the excursion range, so more experimental modulation may be pursued if desired.
 
 <h4> JCRev Signal Path</h4>
 <img src="screenshots/JCRev - from MUMT307 Notes.gif" alt="JCRev Signal Path"> <br>
